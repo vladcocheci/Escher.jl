@@ -81,6 +81,21 @@ render(tabs::Tabs, state) =
 
 wrapbehavior(t::Tabs) = selectable(t)
 
+#Vertical Tabs
+
+@api vtabs => (VTabs <: Selection) begin
+    doc("A vertical tab bar.")
+    arg(vtabs::TileList, doc="The tabs.")
+    kwarg(selected::Integer=1, doc="Index of the currently selected tab.")
+end
+
+render(vtabs::VTabs, state) =
+    Elem("paper-vert-tabs",
+         map(t -> Elem("paper-tab", render(t, state)), vtabs.vtabs.tiles),
+         attributes = @d(:selected=>vtabs.selected-1))
+
+wrapbehavior(vt::VTabs) = selectable(vt)
+
 # Menus
 
 @api menu => (Menu <: Selection) begin
