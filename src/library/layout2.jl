@@ -1,4 +1,5 @@
 export tabs,
+       vtabs,
        pages,
        menu,
        submenu,
